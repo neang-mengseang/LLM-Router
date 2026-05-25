@@ -1,0 +1,42 @@
+{
+  "name": "llm-router",
+  "version": "1.0.0",
+  "description": "A self-hosted, OpenAI-compatible LLM router with multi-provider failover support",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "llm",
+    "router",
+    "openai",
+    "failover",
+    "ai",
+    "proxy"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "fastify": "^5.3.3",
+    "undici": "^7.8.0",
+    "yaml": "^2.7.1",
+    "pino": "^9.6.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "eslint": "^9.27.0",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "pino-pretty": "^13.0.0"
+  }
+}

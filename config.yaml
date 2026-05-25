@@ -1,0 +1,134 @@
+# LLM Router Configuration
+# Fill in your provider API keys below.
+
+server:
+  port: 4000
+  host: "0.0.0.0"
+
+auth:
+  api_keys:
+    - key: sk_test_123
+      name: dev-app
+    - key: sk_test_456
+      name: internal-tool
+
+# Provider credentials
+# Only configure providers you want to use. Leave api_key empty to disable.
+providers:
+  gemini:
+    api_key: ""
+    base_url: "https://generativelanguage.googleapis.com/v1beta"
+
+  groq:
+    api_key: ""
+    base_url: "https://api.groq.com/openai/v1"
+
+  openrouter:
+    api_key: ""
+    base_url: "https://openrouter.ai/api/v1"
+
+  mistral:
+    api_key: ""
+    base_url: "https://api.mistral.ai/v1"
+
+  cerebras:
+    api_key: ""
+    base_url: "https://api.cerebras.ai/v1"
+
+  together:
+    api_key: ""
+    base_url: "https://api.together.xyz/v1"
+
+  nvidia:
+    api_key: ""
+    base_url: "https://integrate.api.nvidia.com/v1"
+
+  huggingface:
+    api_key: ""
+    base_url: "https://api-inference.huggingface.co"
+
+  deepseek:
+    api_key: ""
+    base_url: "https://api.deepseek.com/v1"
+
+  xai:
+    api_key: ""
+    base_url: "https://api.x.ai/v1"
+
+  cohere:
+    api_key: ""
+    base_url: "https://api.cohere.com/v2"
+
+  cloudflare:
+    api_key: ""
+    account_id: ""
+
+  aws:
+    access_key_id: ""
+    secret_access_key: ""
+    region: "us-east-1"
+
+  ollama:
+    base_url: "http://localhost:11434/v1"
+
+# Virtual model definitions
+# Each virtual model maps to an ordered list of provider+model pairs for failover.
+# Models marked with (✓) have been tested and confirmed working.
+models:
+  free-chat:
+    - provider: groq
+      model: llama-3.3-70b-versatile          # ✓ tested
+
+    - provider: cerebras
+      model: llama3.1-8b                      # ✓ tested
+
+    - provider: openrouter
+      model: openrouter/owl-alpha             # ✓ tested
+
+    - provider: nvidia
+      model: meta/llama-3.3-70b-instruct      # ✓ tested
+
+    - provider: cloudflare
+      model: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"  # ✓ tested
+
+    - provider: gemini
+      model: gemini-2.0-flash                 # ✓ tested (needs quota)
+
+    - provider: mistral
+      model: mistral-small-latest
+
+    - provider: together
+      model: meta-llama/Llama-3.3-70B-Instruct-Turbo
+
+    - provider: huggingface
+      model: mistralai/Mixtral-8x7B-Instruct-v0.1
+
+    - provider: ollama
+      model: llama3
+
+  # Example: premium model with paid providers
+  premium-chat:
+    - provider: deepseek
+      model: deepseek-chat                    # ✓ tested (needs balance)
+
+    - provider: xai
+      model: grok-3-mini
+
+    - provider: cohere
+      model: command-r-plus
+
+    - provider: mistral
+      model: mistral-large-latest
+
+    - provider: aws
+      model: anthropic.claude-3-haiku-20240307-v1:0
+
+# Circuit breaker settings
+circuit_breaker:
+  failure_threshold: 3
+  cooldown_seconds: 600
+  success_threshold: 2
+
+# Request settings
+request:
+  timeout_ms: 30000

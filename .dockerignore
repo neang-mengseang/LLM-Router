@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+Docs.md
+Keys
+config.yaml
+.env
+.vscode
+.idea
