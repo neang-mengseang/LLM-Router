@@ -1,4 +1,5 @@
 # LLM Router
+<img width="800" height="447" alt="image" src="https://github.com/user-attachments/assets/4365d3ea-7228-4824-b2b5-fcbd097c8549" />
 
 A self-hosted, OpenAI-compatible LLM routing engine with automatic multi-provider failover.
 
